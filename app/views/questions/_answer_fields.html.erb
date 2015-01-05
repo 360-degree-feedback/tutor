@@ -1,0 +1,12 @@
+<div class="nested-fields indent">
+  <div class="input-group">
+    <span class="input-group-addon">Answer</span>
+    <%= f.text_field :title, :class => 'form-control' %>
+    <span class="input-group-addon"><%= f.check_box :correct %> Correct</span>
+    <span class="input-group-btn">
+        <button class="btn btn-default red" type="button"><%= link_to_remove_association 'Remove', f %></button>
+      </span>
+  </div>
+</div>
+
+

@@ -1,0 +1,127 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.blue {
+  background-color: #32ace2;
+  border-color: #34a9df;
+  color: white;
+}
+
+.blue:hover {
+  background-color: #2b90bf;
+  border-color: #197caa;
+  color: white;
+}
+
+.box {
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: #eeeeee;
+  height: 400px;
+  overflow: auto;
+}
+
+.questionaire {
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: #eeeeee;
+  width: 100%;
+}
+
+.navbar-img {
+  height: 30px;
+}
+
+.navbar-brand {
+  padding-top: 10px;
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .control-label {
+    color: black;
+  }
+
+}
+
+#error_explanation {
+  @extend .alert;
+  @extend .alert-danger;
+  width: 100%;
+}
+
+.alert {
+  margin-top: 10px;
+}
+
+.indent {
+  margin-left: 50px;
+  margin-bottom: 15px;
+}
+
+.red {
+  color: #d9534f;
+}
+
+.green {
+  color: #5cb85c;
+}
+
+.markdown {
+
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.big {
+  font-size: 100px;
+}
+
+.nav > pills > li > a {
+  color: black;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #32ace2;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+  background-color: #32ace2;
+  border-color: #32ace2;
+}
+
+.remove_fields, .remove_fields:hover, .remove_fields:visited, .remove_fields:link {
+  color: red;
+  text-decoration: none;
+}
+
+.add_fields, .add_fields:hover, .add_fields:visited, .add_fields:link {
+  color: green;
+  text-decoration: none;
+}

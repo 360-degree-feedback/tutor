@@ -1,0 +1,43 @@
+<%= form_tag mark_lesson_path, :method => :post do %>
+
+    <div class="col-md-1"></div>
+    <div class="row questionaire">
+
+      <div class="col-md-7" id="questions">
+
+
+        <% if @questions.first %>
+             <h1>Questions</h1></br>
+             <% @questions.each do |question| %>
+                <p><strong><%= question.title %></strong></p>
+
+                <div class="indent">
+                  <% question.answers.each do |answer| %>
+                      <%= radio_button_tag question.id, answer.id %>
+                      <%= label_tag answer.title %>
+                      </br>
+                  <% end %>
+                </div>
+
+
+            <% end %>
+        <% else %>
+            <div class="text-center">
+              </br></br></br></br></br>
+              <h2>To add questions, click "Edit".</h2>
+              </br></br></br></br></br>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-11 col-md-offset-1">
+      </br>
+      <%= submit_tag "Submit", :class => 'btn btn-success pull-right' if @questions.first %>
+    </div>
+
+
+<% end %>
+
+
+
+

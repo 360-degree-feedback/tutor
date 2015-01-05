@@ -1,0 +1,34 @@
+<h1>Lessons</h1>
+</br>
+<%= button_to 'New Lesson', new_lesson_path, :class => 'btn blue', :method => :get %>
+</br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Created by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lessons.each do |lesson| %>
+      <tr>
+        <td><%= lesson.title %></td>
+        <td><%= truncate lesson.description, :length => 60, :separator => /\W/ %></td>
+        <td>
+          <%= current = User.find(lesson.created_by)
+              current.name + ' ' + current.surname
+          %>
+        </td>
+        <td><%= link_to 'View', lesson %></td>
+        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
+        <td><%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

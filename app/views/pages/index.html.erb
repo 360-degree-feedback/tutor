@@ -1,0 +1,34 @@
+</br>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-6">
+      <%= image_tag 'tutor3.png', :class => 'img-responsive' %>
+    </div>
+    <div class="col-md-4 col-md-offset-1 ">
+      <h1>Welcome</h1>
+
+      <p>Click "Start" to begin a lesson.</p>
+    </div>
+    <div class="col-md-1">
+      </br></br></br>
+      <%= button_to 'Start', lessons_path, :class => 'btn btn-success btn-lg', :method => :get %>
+    </div>
+  </div>
+</div>
+<% unless logged_in? %>
+    <div class="col-md-3">
+      <h1>Admin Login</h1></br>
+      <%= render 'sessions/form' %>
+    </div>
+<% else %>
+    <div class="col-md-3">
+      <h1>Hello <%= @user.name %></h1></br>
+      <a href="<%= users_path %>">
+        <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-user"></span> Manage Users </button>
+      </a>
+      </br></br>
+      <a href="<%= lessons_path %>">
+        <button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-book"></span> Manage Lessons </button>
+      </a>
+    </div>
+<% end %>

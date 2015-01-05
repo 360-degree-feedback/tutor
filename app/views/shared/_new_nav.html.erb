@@ -1,0 +1,5 @@
+<ul class="nav nav-pills nav-stacked">
+  <li class="<%= 'active' if params[:controller] == 'lessons' %>"><%= link_to 'Information', new_lesson_path %></li>
+  <li class="<%= 'active' if params[:controller] == 'questions' %>"><%= link_to 'Questions', add_lesson_questions_path %></li>
+  <li class="<%= 'active' if params[:controller] == 'slides' %>"><%= link_to 'Slides', add_lesson_slides_path %></li>
+</ul>

@@ -1,0 +1,25 @@
+</br>
+<%= button_to 'Edit', edit_lesson_path(@lesson), :class => 'btn blue pull-right', :method => 'get' if logged_in? %>
+</br></br>
+<%= render 'shared/nav' %>
+<div class="col-md-9 col-md-offset-1">
+  <h1>Result</h1>
+  </br>
+  <% score = @correct.to_i/params[:questions].to_i > 0.8 %>
+  <% if score %>
+      <span class="glyphicon glyphicon-thumbs-up big green"></span>
+  <% else %>
+      <span class="glyphicon glyphicon-thumbs-down big red"></span>
+  <% end %>
+  <h4>You answered <%= @correct %> out of <%= params[:questions] %> correctly. </h4>
+  <h4><%= if score
+            'Well Done! You may proceed to the next lesson.'
+          else
+            'Unfortunately, your score needs to be above 80% to proceed to the next lesson.'
+          end %>
+  </h4>
+  </br>
+  <% unless score %>
+      <%= button_to 'Retry', test_lesson_path(@lesson), :class => 'btn btn-danger btn-lg', :method => :get %>
+  <% end %>
+</div>

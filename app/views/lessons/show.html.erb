@@ -1,0 +1,60 @@
+</br>
+<%= button_to 'Edit', modify_lesson_slides_path(@lesson), :class => 'btn blue pull-right', :method => 'get' if logged_in? %>
+</br></br>
+<div class="row">
+  <%= render 'shared/nav' %>
+  <div class="col-md-8 col-md-offset-2">
+    <% slide_count = 1
+       if @slides.first
+         @slides.each do |slide| %>
+            <div class="box <%= 'hidden' if slide_count != 1 %>" content="<%= slide.id %>">
+              <%= markdown(slide.markdown) %>
+            </div>
+            <% slide_count = slide_count + 1 %>
+        <% end %>
+    <% else %>
+        <div class="box text-center">
+          </br></br></br></br></br></br>
+          <h1>To Add slides, click "Edit".</h1>
+        </div>
+    <% end %>
+  </div>
+  <div class="col-md-8 col-md-offset-4">
+
+
+    <nav>
+      <ul class="pagination">
+        <!--
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        -->
+        <% count = 1 %>
+        <% @slides.each do |slide| %>
+            <li class="page <%= 'active' if count == 1 %>">
+              <a class="slide" href="#" content="<%= slide.id %>"><%= count %></a></li>
+        <% count = count + 1
+           end %>
+        <!--
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        -->
+      </ul>
+    </nav>
+    <a href="/lessons/<%= @lesson.id %>/test">
+      <button type="button" class="btn btn-success pull-right">Next</button>
+    </a>
+
+    <p><%= @lesson.description %></p>
+  </div>
+</div>
+
+
+
+
+

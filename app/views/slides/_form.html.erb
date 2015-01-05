@@ -1,0 +1,17 @@
+<%= form_for @lesson do |f| %>
+
+    <fieldset class="lesson-slides">
+      <%= f.fields_for :slides do |q| %>
+          <%= render 'slide_fields', f: q %>
+      <% end %>
+      <button type="button" class="btn btn-default">
+        <%= link_to_add_association 'Add Slide', f, :slides %>
+      </button>
+      <button class="btn btn-default">
+        <span class="glyphicon glyphicon-question-sign"></span>
+      </button>
+    </fieldset>
+    </br>
+    <%= f.submit "Save", :class => 'btn btn-success' %>
+
+<% end %>
