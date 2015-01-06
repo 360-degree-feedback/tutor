@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230103729) do
+ActiveRecord::Schema.define(version: 20150106135504) do
 
   create_table "answers", force: true do |t|
     t.text     "title"
@@ -44,16 +44,31 @@ ActiveRecord::Schema.define(version: 20141230103729) do
     t.integer  "lesson_id"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "surname"
-    t.string   "email"
-    t.boolean  "admin"
+  create_table "test_histories", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
   end
 
+  create_table "tests", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                       null: false
+    t.string   "crypted_password",            null: false
+    t.string   "salt",                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "name"
+    t.text     "surname"
+    t.boolean  "admin"
+    t.string   "activation_state"
+    t.string   "activation_token"
+    t.datetime "activation_token_expires_at"
+  end
+
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

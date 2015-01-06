@@ -19,7 +19,7 @@
         <td><%= truncate lesson.description, :length => 60, :separator => /\W/ %></td>
         <td>
           <%= current = User.find(lesson.created_by)
-              current.name + ' ' + current.surname
+              current.email
           %>
         </td>
         <td><%= link_to 'View', lesson %></td>

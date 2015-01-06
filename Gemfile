@@ -39,8 +39,24 @@ gem 'cocoon'
 # Breadcrumbs
 gem 'breadcrumbs_on_rails'
 
-# Rspec
-gem 'rspec-rails', :group => [:development, :test]
+# Rspec & Factory Girl
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+end
+
+# Sorcery Authentication
+gem 'sorcery'
+
+# Letter Opener
+gem 'letter_opener', :group => :development
 
 # Use unicorn as the app server
 # gem 'unicorn'

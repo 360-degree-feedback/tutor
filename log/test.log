@@ -93,3 +93,39 @@ Processing by LessonsController#update as HTML
 Redirected to http://test.host/lessons/980190962
 Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
   [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (128.7ms)[0m  CREATE TABLE "answers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" text, "correct" boolean, "created_at" datetime, "updated_at" datetime, "question_id" integer) 
+  [1m[36m (236.0ms)[0m  [1mCREATE TABLE "lessons" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "created_by" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (113.5ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" text, "created_at" datetime, "updated_at" datetime, "lesson_id" integer) 
+  [1m[36m (122.6ms)[0m  [1mCREATE TABLE "slides" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "markdown" text, "created_at" datetime, "updated_at" datetime, "lesson_id" integer) [0m
+  [1m[35m (212.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "surname" varchar(255), "email" varchar(255), "admin" boolean, "created_at" datetime, "updated_at" datetime, "password_digest" varchar(255)) 
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (100.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (125.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (123.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (122.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141230103729')
+  [1m[36m (112.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141229092759')[0m
+  [1m[35m (101.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141229092855')
+  [1m[36m (123.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141230102309')[0m
+  [1m[35m (114.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141229090627')
+  [1m[36m (112.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141229102300')[0m
+  [1m[35m (123.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141229091659')
+  [1m[36m (112.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20141229091857')[0m
+  [1m[35m (112.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20141229092402')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE LOWER("users"."email") = LOWER('ethanmarrs@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "surname", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-01-05 11:26:49.060099"], ["email", "ethanmarrs@gmail.com"], ["name", "Ethan"], ["password_digest", "$2a$04$xE6f6Lnznmu6iFH.I4adxeiGwIpGhD.gHxPYsHdb1wl88HIjpXqDS"], ["surname", "Marrs"], ["updated_at", "2015-01-05 11:26:49.060099"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE LOWER("users"."email") = LOWER('ethanmarrs@gmail.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password_digest", "surname", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-01-05 11:29:03.623565"], ["email", "ethanmarrs@gmail.com"], ["name", "Ethan"], ["password_digest", "$2a$04$3zBQMYGKAXKPYC6GQb5Ro.5KJuCKDgCTJBO/Uwg0MZQij6csqO01y"], ["surname", "Marrs"], ["updated_at", "2015-01-05 11:29:03.623565"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m

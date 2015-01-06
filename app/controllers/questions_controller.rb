@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_filter :authorised
   before_action :set_lesson, only: [:add, :modify]
 
   def add

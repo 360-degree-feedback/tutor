@@ -1,12 +1,24 @@
 Rails.application.routes.draw do
 
+  get 'user_sessions/new'
+
+  get 'user_sessions/create'
+
+  get 'user_sessions/destroy'
+
+  resources :user_sessions
+  resources :users do
+    member do
+      get :activate
+    end
+  end
+
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
+
   get 'welcome' => 'pages#index'
   root 'pages#index'
 
-  resources :users
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
 
   resources :lessons do
     member do
@@ -15,6 +27,10 @@ Rails.application.routes.draw do
       get 'slide'
       post 'mark'
     end
+    collection do
+      get 'first'
+    end
+
     resources :slides do
       collection do
         get 'add'

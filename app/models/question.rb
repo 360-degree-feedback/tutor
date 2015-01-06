@@ -21,6 +21,8 @@ class Question < ActiveRecord::Base
     unless flag
       errors.add :answers, 'must have at least one correct answer'
     end
+
+    # errors.add :answers, 'must have at least one correct answer' unless answers.none? { |answer| answer.correct }
   end
 
   def check_single_answer

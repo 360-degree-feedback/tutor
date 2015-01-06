@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  before_filter :authorised, only: [:index, :edit, :update, :new, :destroy]
   before_action :set_lesson, only: [:show, :edit, :update, :destroy, :test, :mark, :result]
 
   include ApplicationHelper
@@ -44,6 +45,11 @@ class LessonsController < ApplicationController
     @correct = params[:correct]
     #@questions = params[:questions]
     @lessons = Lesson.all
+  end
+
+  def first
+    @lesson = Lesson.first
+    redirect_to lesson_path(@lesson)
   end
 
   # GET /lessons/new

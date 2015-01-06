@@ -1,4 +1,5 @@
 class SlidesController < ApplicationController
+  before_filter :authorised
   before_action :set_lesson, :authorisation, only: [:add, :modify]
 
   def add

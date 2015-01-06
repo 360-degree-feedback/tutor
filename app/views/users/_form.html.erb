@@ -1,27 +1,41 @@
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-  <%= form_for (@user) do |f| %>
-      <%= render 'shared/error_messages' %>
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :surname %>
-        <%= f.text_field :surname, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, :class => 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit 'Save', :class => 'btn blue' %>
-      </div>
-  <% end %>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :admin, :value => false %>
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :surname %><br>
+      <%= f.text_field :surname, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %><br/>
+      <%= f.password_field :password, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= check_box_tag :admin,  class: 'form-control' %>
+      <%= label_tag 'Administrator' %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Save', :class => 'btn blue' %>
+    </div>
+<% end %>
