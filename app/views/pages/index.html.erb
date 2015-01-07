@@ -19,14 +19,22 @@
     </div>
 <% elsif !current_user.admin %>
     <div class="col-md-3">
-    <h1>Hello <%= current_user.name %></h1></br>
-    <a href="<%= lessons_path %>">
-      <button class="btn btn-success btn-lg"><span class="glyphicon glyphicon-book"></span> Continue</button>
-    </a>
-    </br></br>
-    <a href="<%= users_path %>">
-      <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-th-list"></span> History</button>
-    </a>
+      <h1>Hello <%= current_user.name %></h1></br>
+      <a href="<%= current_lessons_path %>">
+        <button class="btn blue btn-lg"><span class="glyphicon glyphicon-book"></span> Continue</button>
+      </a>
+      </br></br>
+      <a href="<%= display_tests_path(:user_id => current_user.id) %>">
+        <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-th-list"></span> History</button>
+      </a>
+    </div>
+    <div class="col-md-9 jumbotron">
+      <h2>Progress</h2></br>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%">
+          <span class="sr-only"><%= @progress %>% Complete (success)</span>
+        </div>
+      </div>
     </div>
 <% else %>
     <div class="col-md-3">
@@ -40,3 +48,4 @@
       </a>
     </div>
 <% end %>
+

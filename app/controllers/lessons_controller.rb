@@ -50,10 +50,13 @@ class LessonsController < ApplicationController
   end
 
   def current
+    # Find the next lesson which the user should attempt.
+    # If they have no Test history, start from scratch.
+
     user = User.find(current_user.id)
-    tests = Test.where(user_id: user.id)
+    tests = Test.where('user_id = ? AND passed = ?', user.id, true) #where mark / total > 0.8
     latest = tests.maximum('lesson_id')
-    next_lesson = Lesson.where('id > ?', latest).first
+    next_lesson = Lesson.where('id > ?', latest).first || Lesson.first
     redirect_to lesson_path(next_lesson)
   end
 

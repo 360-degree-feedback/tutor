@@ -48,6 +48,11 @@ class TestsController < ApplicationController
     Test.update(@test.id, :mark => correct)
     Test.update(@test.id, :total => @questions.count)
 
+    if (correct/@questions.count) > 0.8
+      Test.update(@test.id, :passed => true)
+    else
+      Test.update(@test.id, :passed => false)
+    end
     redirect_to @test
 
   end

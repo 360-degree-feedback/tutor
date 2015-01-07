@@ -6,7 +6,9 @@
     <th>Lesson</th>
     <th>Mark</th>
     <th>Out of</th>
+    <th>Passed</th>
     <th>Date</th>
+    <th>Time</th>
     <th colspan="1"></th>
   </tr>
   </thead>
@@ -17,7 +19,9 @@
         <td><%= Lesson.find(test.lesson_id).title %></td>
         <td><%= test.mark %></td>
         <td><%= test.total %></td>
-        <td><%= test.created_at %></td>
+        <td><%= test.passed %></td>
+        <td><%= test.created_at.to_date %></td>
+        <td><%= test.created_at.to_s(:time)%></td>
         <td><%= link_to 'View', test_path(test) %></td>
       </tr>
   <% end %>
