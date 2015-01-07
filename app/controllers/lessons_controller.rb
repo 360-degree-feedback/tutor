@@ -27,6 +27,8 @@ class LessonsController < ApplicationController
   def test
     @questions = @lesson.questions
     @lessons = Lesson.all
+
+    @test = Test.new
   end
 
   def mark
@@ -47,9 +49,12 @@ class LessonsController < ApplicationController
     @lessons = Lesson.all
   end
 
-  def first
-    @lesson = Lesson.first
-    redirect_to lesson_path(@lesson)
+  def current
+    user = User.find(current_user.id)
+    tests = Test.where(user_id: user.id)
+    latest = tests.maximum('lesson_id')
+    next_lesson = Lesson.where('id > ?', latest).first
+    redirect_to lesson_path(next_lesson)
   end
 
   # GET /lessons/new

@@ -1,0 +1,32 @@
+</br>
+<%= render 'shared/test_nav' %>
+<div class="col-md-9 col-md-offset-1">
+  <%= render 'build' %>
+  </br>
+  <% score = true if (@test.mark / @test.total) > 0.8 %>
+  <div class="col-md-10">
+    <h4>You answered <%= @test.mark %> out of <%= @test.total %> correctly. </h4>
+    <h4><%= if score
+              'Well Done! You may proceed to the next lesson.'
+            else
+              'Unfortunately, your score needs to be above 80% to proceed to the next lesson.'
+            end %>
+    </h4>
+  </div>
+  <div class="col-md-2">
+    </br>
+    <% unless score %>
+        <%= button_to 'Retry', test_lesson_path(@lesson), :class => 'btn btn-danger btn-lg pull-right', :method => :get %>
+    <% else %>
+        <% next_lesson = Lesson.where('id > ?', @lesson.id).first %>
+        <% if next_lesson %>
+            <%= button_to 'Next', lesson_path(next_lesson.id), :class => 'btn btn-success btn-lg pull-right', :method => :get %>
+        <% else %>
+            <%= button_to 'Next', congratulations_path(next_lesson), :class => 'btn btn-success btn-lg pull-right', :method => :get %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+

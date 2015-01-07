@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106135504) do
+ActiveRecord::Schema.define(version: 20150107114806) do
 
   create_table "answers", force: true do |t|
     t.text     "title"
@@ -47,11 +47,19 @@ ActiveRecord::Schema.define(version: 20150106135504) do
   create_table "test_histories", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "test_id"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.boolean  "correct"
   end
 
   create_table "tests", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.integer  "mark"
+    t.integer  "total"
   end
 
   create_table "users", force: true do |t|

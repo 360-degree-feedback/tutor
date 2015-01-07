@@ -17,10 +17,12 @@ Rails.application.routes.draw do
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
   get 'welcome' => 'pages#index'
+  get 'congratulations' => 'pages#congratulations'
+
   root 'pages#index'
 
-
   resources :lessons do
+
     member do
       get 'test'
       get 'result'
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
       post 'mark'
     end
     collection do
-      get 'first'
+      get 'current'
     end
 
     resources :slides do
@@ -37,12 +39,23 @@ Rails.application.routes.draw do
         get 'modify'
       end
     end
+
     resources :questions do
       collection do
         get 'add'
         get 'modify'
       end
     end
+
+  end
+
+  resources :tests do
+
+    collection do
+      post 'add'
+      get 'display'
+    end
+    resources :test_histories
   end
 
 # The priority is based upon order of creation: first created -> highest priority.

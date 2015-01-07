@@ -1,0 +1,55 @@
+<div class="col-md-1"></div>
+<div class="row questionaire">
+
+  <div class="col-md-7" id="questions">
+
+
+    <% if @questions.first %>
+        <h1>Result</h1></br>
+        <% @questions.each do |question| %>
+            <div class="col-md-10">
+              <p><strong><%= question.title %></strong></p>
+
+              <div class="indent">
+
+                <% question.answers.each do |answer| %>
+                    <%= radio_button_tag question.id, answer.id, (true if answer.id.to_s == @test_histories.find_by(question_id: question.id).answer_id.to_s), disabled: true %>
+                    <!== Set selected answer to checked. ==>
+                    <%= label_tag answer.title %>
+                    </br>
+                <% end %>
+
+              </div>
+            </div>
+            <% if @test_histories.find_by(question_id: question.id).correct %>
+                <div class="col-md-2 pull-right">
+                  <span class="glyphicon glyphicon-ok green med"></span>
+                </div>
+            <% else %>
+                <div class="col-md-2 pull-right">
+                  <span class="glyphicon glyphicon-remove red med"></span>
+                </div>
+            <% end %>
+
+
+
+        <% end %>
+    <% else %>
+        <div class="text-center">
+          </br></br></br></br></br>
+          <h2>To add questions, click "Edit".</h2>
+          </br></br></br></br></br>
+        </div>
+    <% end %>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-<%= form_tag mark_lesson_path, :method => :post do %>
+<%= form_tag add_tests_path, :method => :post do %>
 
     <div class="col-md-1"></div>
     <div class="row questionaire">
@@ -7,8 +7,8 @@
 
 
         <% if @questions.first %>
-             <h1>Questions</h1></br>
-             <% @questions.each do |question| %>
+            <h1>Questions</h1></br>
+            <% @questions.each do |question| %>
                 <p><strong><%= question.title %></strong></p>
 
                 <div class="indent">
@@ -28,6 +28,8 @@
               </br></br></br></br></br>
             </div>
         <% end %>
+        <%= hidden_field_tag 'lesson_id', @lesson.id %>
+        <%= hidden_field_tag 'user_id', @user.id %>
       </div>
     </div>
     <div class="col-md-11 col-md-offset-1">
@@ -37,6 +39,8 @@
 
 
 <% end %>
+
+
 
 
 
