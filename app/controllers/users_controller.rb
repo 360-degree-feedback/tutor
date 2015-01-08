@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_filter :require_login, :only => [:create, :activate]
-  before_filter :authorised
+  before_filter :authorised, except: [:activate]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users

@@ -7,11 +7,72 @@
       <button type="button" class="btn btn-default">
         <%= link_to_add_association 'Add Slide', f, :slides %>
       </button>
-      <button class="btn btn-default">
-        <span class="glyphicon glyphicon-question-sign"></span>
+      <!-- Button trigger modal -->
+      <button type="button" data-toggle="modal" data-target="#myModal"class="btn btn-default">
+        <span class="glyphicon glyphicon-question-sign"></span> Help
       </button>
     </fieldset>
     </br>
     <%= f.submit "Save", :class => 'btn btn-success' %>
 
 <% end %>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Markdown Cheatsheet</h2>
+      </div>
+      <div class="modal-body">
+        <h3>What is Markdown?</h3>
+        <p>
+          Markdown is a popular markup language which allows for plain text to be converted into HTML. Use the syntax below to
+          determine how the lesson's slides will look.
+        </p>
+        <hr>
+        <h3>Syntax</h3>
+        <h4>Headings</h4>
+        <pre>
+          # A large Heading
+          ## A smaller Heading
+          ### An even smaller Heading
+          #### A tiny Heading</pre>
+        <h4>Horizontal Lines</h4>
+        <pre>
+            --- Or
+            *** Or
+            ___ Etc.
+        </pre>
+        <h4>Text Styling</h4>
+        <pre>
+          * Italic text *
+          ** Bold text **
+          ** _Or both_ **</pre>
+        <h4>Unordered Lists</h4>
+        <pre>
+          * Item 1
+          * Item 2
+          * Etc.</pre>
+        <h4>Ordered Lists</h4>
+        <pre>
+          1. Item 1
+          2. Item 2
+          3. Etc.</pre>
+        <h4>Images</h4>
+        <pre>
+          [logo]: https://github.com/adam-p/markdown-here/raw/master/
+          src/common/images/icon48.png
+          "Logo Title Text 2"</pre>
+        <h4>Videos</h4>
+        <pre>
+          &ltiframe src="VIMEO/YOUTUBE_LINK" width=100% height=98% frame
+          border="0" webkitallowfullscreen mozallowfullscreen allowful
+          lscreen&gt&lt/iframe&gt</pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

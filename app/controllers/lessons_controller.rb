@@ -1,16 +1,14 @@
 class LessonsController < ApplicationController
-  before_filter :authorised, only: [:index, :edit, :update, :new, :destroy]
   before_action :set_lesson, only: [:show, :edit, :update, :destroy, :test, :mark, :result]
+  before_filter :can_see, only: [:show, :test]
+  before_filter :authorised, only: [:index, :edit, :update, :new, :destroy]
+
 
   include ApplicationHelper
 
   # GET /lessons
   # GET /lessons.json
   def index
-    if !logged_in?
-      redirect_to lesson_path(Lesson.first)
-    end
-
     @user = current_user
     @lessons = Lesson.all
   end
@@ -60,11 +58,13 @@ class LessonsController < ApplicationController
     redirect_to lesson_path(next_lesson)
   end
 
+  # GET /lessons/1/edit
+  def edit
+    @user = current_user
+  end
+
   # GET /lessons/new
   def new
-    if !logged_in?
-      redirect_to lesson_path(Lesson.first)
-    end
     @user = current_user
     @lesson = Lesson.new
     1.times do
@@ -76,20 +76,9 @@ class LessonsController < ApplicationController
     end
   end
 
-  # GET /lessons/1/edit
-  def edit
-    @user = current_user
-    if !logged_in?
-      redirect_to lesson_path(Lesson.first)
-    end
-  end
-
   # POST /lessons
   # POST /lessons.json
   def create
-    if !logged_in?
-      redirect_to lesson_path(Lesson.first)
-    end
     @lesson = Lesson.new(lesson_params)
 
     respond_to do |format|
@@ -109,10 +98,6 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
-    if !logged_in?
-      redirect_to lesson_path(Lesson.first)
-    end
-
     respond_to do |format|
       if @lesson.update(lesson_params)
         #flash[:success] = 'Lesson was successfully updated.'
@@ -152,6 +137,15 @@ class LessonsController < ApplicationController
 
 
   private
+
+  # Checks whether the user is allowed to view the lesson (have progressed far enough).
+  def can_see
+    if !current_user.admin && progress_id(current_user) < @lesson.id
+      redirect_to current_lessons_path
+    end
+  end
+
+
   # Use callbacks to share common setup or constraints between actions.
   def set_lesson
     @user = current_user

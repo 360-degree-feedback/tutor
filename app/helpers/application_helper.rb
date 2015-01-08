@@ -18,4 +18,14 @@ module ApplicationHelper
     return ((count.to_f/total.to_f).round(1)*100).to_i
   end
 
+  def progress_id(user)
+    # Find the next lesson which the user should attempt.
+    # If they have no Test history, start from scratch.
+
+    tests = Test.where('user_id = ? AND passed = ?', user.id, true)
+    latest = tests.maximum('lesson_id')
+    next_lesson = Lesson.where('id > ?', latest).first || Lesson.first
+
+    return next_lesson.id || Lesson.first.id
+  end
 end
