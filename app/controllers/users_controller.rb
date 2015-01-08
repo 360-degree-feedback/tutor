@@ -4,9 +4,12 @@ class UsersController < ApplicationController
   before_filter :authorised, except: [:activate]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb 'Home', :root_path
+
   # GET /users
   # GET /users.json
   def index
+    add_breadcrumb 'Users', users_path
     @users = User.all
   end
 
@@ -17,11 +20,15 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    add_breadcrumb 'Users', users_path
+    add_breadcrumb 'New', new_user_path
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    add_breadcrumb 'Users', users_path
+    add_breadcrumb 'Edit', edit_user_path(@user)
   end
 
   # POST /users

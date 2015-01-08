@@ -22,6 +22,10 @@ body {
   background-color: white;
 }
 
+h1 {
+  margin-top: 10px;
+}
+
 .blue {
   background-color: #32ace2;
   border-color: #34a9df;
@@ -75,6 +79,7 @@ body {
 
 .alert {
   margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .indent {
@@ -135,6 +140,16 @@ body {
   text-decoration: none;
 }
 
-.modal {
+.breadcrumb {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+.edit {
+  margin-bottom: 10px;
+}
+
+.no-padding {
+  margin-top: 0px;
 }

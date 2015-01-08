@@ -8,16 +8,17 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password])
-      redirect_to(welcome_path)
+      flash[:success] = 'You have been successfully logged in'
+      redirect_to(root_path)
     else
       flash[:danger] = 'Login failed'
-      redirect_to(welcome_path)
+      redirect_to(root_path)
     end
   end
 
   def destroy
     logout
     flash[:success] = 'You have been successfully logged out'
-    redirect_to(welcome_path)
+    redirect_to(root_path)
   end
 end

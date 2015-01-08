@@ -1,6 +1,8 @@
 FactoryGirl.define do
-  factory :answer do
+  factory :answer, class: Answer do
     title 'Steve'
-    question
+    correct true
+    question_id 1
   end
+
 end

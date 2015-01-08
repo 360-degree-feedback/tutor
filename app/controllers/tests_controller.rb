@@ -1,5 +1,7 @@
 class TestsController < ApplicationController
 
+  add_breadcrumb 'Home', :root_path
+
   def index
 
   end
@@ -8,12 +10,23 @@ class TestsController < ApplicationController
     # Shows all answers to questions and mark obtained.
     @test = Test.find(params[:id])
     @lesson = Lesson.find(@test.lesson_id)
+
+    add_breadcrumb @lesson.title, lesson_path(@lesson)
+    add_breadcrumb 'Test', test_lesson_path(@lesson)
+    add_breadcrumb 'Result', test_path(@test)
+
     @lessons = Lesson.all
     @test_histories = @test.test_histories
     @questions = @lesson.questions
   end
 
   def display
+    # If the user is not an admin AND isn't viewing their own test, redirect.
+    if !current_user.admin && params[:user_id] != current_user.id.to_s
+      redirect_to welcome_path
+    end
+
+    add_breadcrumb 'Tests', display_tests_path(:user_id => params[:user_id])
     # Shows all tests taken by a particular user.
     @tests = Test.where(user_id: params[:user_id])
   end

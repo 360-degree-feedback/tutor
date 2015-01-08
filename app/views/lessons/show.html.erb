@@ -1,6 +1,4 @@
-</br>
-<%= button_to 'Edit', modify_lesson_slides_path(@lesson), :class => 'btn blue pull-right', :method => 'get' if current_user.admin %>
-</br></br>
+<%= button_to 'Edit', modify_lesson_slides_path(@lesson), :class => 'btn btn-warning edit', :method => 'get' if current_user.admin %>
 <div class="row">
   <%= render 'shared/nav' %>
   <div class="col-md-8 col-md-offset-2">

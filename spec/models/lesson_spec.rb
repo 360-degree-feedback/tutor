@@ -15,8 +15,13 @@ describe Lesson do
     expect(lesson).to be_invalid
   end
 
+  it 'created lesson has valid description' do
+    expect(@lesson.description).to eq('Testing')
+  end
+
   it 'validates description correctly' do
     lesson = FactoryGirl.build(:lesson, description: nil)
+    FactoryGirl.build(:lesson, description: nil)
     expect(lesson).to be_invalid
   end
 end

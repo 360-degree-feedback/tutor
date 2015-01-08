@@ -1,12 +1,12 @@
 <%= form_for @lesson do |f| %>
-  <fieldset class="lesson-questions">
-    <div id="questions">
-      <%= f.fields_for :questions do |q| %>
-          <%= render 'question_fields', f: q %>
-      <% end %>
-      <button type="button" class="btn btn-default"><%= link_to_add_association 'Add Question', f, :questions %></button>
+    <fieldset class="lesson-questions">
+      <div id="questions">
+        <%= f.fields_for :questions do |q| %>
+            <%= render 'question_fields', f: q %>
+        <% end %>
+        <button type="button" class="btn btn-default"><%= link_to_add_association 'Add Question', f, :questions %></button>
+      </div>
+    </fieldset>
+    <%= f.submit "Save", :class => 'btn btn-success pull-right' %>
     </div>
-  </fieldset>
-  <%= f.submit "Save", :class => 'btn btn-success pull-right' %>
-</div>
 <% end %>

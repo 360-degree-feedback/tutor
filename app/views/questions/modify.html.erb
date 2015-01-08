@@ -1,12 +1,10 @@
-</br>
-<%= button_to 'View', lesson_path(@lesson), :class => 'btn blue pull-right', :method => :get %>
+<%= button_to 'View', lesson_path(@lesson), :class => 'btn btn-warning edit', :method => :get %>
 <div class="row">
   <div id="edit-nav" class="col-md-2">
-    </br></br></br>
     <%= render 'shared/edit_nav' %>
   </div>
   <div class="col-md-9 col-md-offset-1" id="questions">
-    <h1>Questions</h1></br>
+    <h1 class="no-padding">Questions</h1></br>
     <%= render 'form' %>
   </div>
 </div>

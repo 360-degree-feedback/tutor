@@ -2,12 +2,18 @@ class QuestionsController < ApplicationController
   before_filter :authorised
   before_action :set_lesson, only: [:add, :modify]
 
+  add_breadcrumb 'Home', :root_path
   def add
     @question = @lesson.questions.new
     question = @lesson.questions.build
     2.times do
       question.answers.build
     end
+  end
+
+  def modify
+    add_breadcrumb 'Edit', edit_lesson_path(@lesson)
+    add_breadcrumb 'Questions', modify_lesson_questions_path(@lesson)
   end
 
   private

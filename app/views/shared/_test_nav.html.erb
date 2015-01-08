@@ -1,4 +1,4 @@
-<div id="lesson-nav" class="col-md-2">
+<div id="lesson-nav">
   <ul class="nav nav-pills nav-stacked">
     <% @lessons.each do |lesson| %>
         <li class="<%= 'active' if lesson.id == @lesson.id %>"><%= link_to lesson.title, lesson %></li>

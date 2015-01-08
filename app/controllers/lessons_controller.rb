@@ -3,12 +3,14 @@ class LessonsController < ApplicationController
   before_filter :can_see, only: [:show, :test]
   before_filter :authorised, only: [:index, :edit, :update, :new, :destroy]
 
-
   include ApplicationHelper
+
+  add_breadcrumb 'Home', :root_path
 
   # GET /lessons
   # GET /lessons.json
   def index
+    add_breadcrumb 'Lessons', lessons_path
     @user = current_user
     @lessons = Lesson.all
   end
@@ -16,6 +18,8 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    add_breadcrumb 'Lessons', lessons_path
+    add_breadcrumb @lesson.title, lesson_path(@lesson)
     @lessons = Lesson.all
     @slides = @lesson.slides
     @first_slide = @slides.first
@@ -23,9 +27,10 @@ class LessonsController < ApplicationController
   end
 
   def test
+    add_breadcrumb @lesson.title, lesson_path(@lesson)
+    add_breadcrumb 'Test', test_lesson_path(@lesson)
     @questions = @lesson.questions
     @lessons = Lesson.all
-
     @test = Test.new
   end
 
@@ -60,11 +65,14 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1/edit
   def edit
+    add_breadcrumb @lesson.title, lesson_path(@lesson)
+    add_breadcrumb 'Edit', edit_lesson_path(@lesson)
     @user = current_user
   end
 
   # GET /lessons/new
   def new
+    add_breadcrumb 'New Lesson', new_lesson_path
     @user = current_user
     @lesson = Lesson.new
     1.times do

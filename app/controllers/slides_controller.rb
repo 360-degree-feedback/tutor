@@ -2,9 +2,16 @@ class SlidesController < ApplicationController
   before_filter :authorised
   before_action :set_lesson, :authorisation, only: [:add, :modify]
 
+  add_breadcrumb 'Home', :root_path
+
   def add
     @slide = @lesson.slides.new
     @lesson.slides.build
+  end
+
+  def modify
+    add_breadcrumb 'Edit', edit_lesson_path(@lesson)
+    add_breadcrumb 'Slides', modify_lesson_slides_path(@lesson)
   end
 
   private
