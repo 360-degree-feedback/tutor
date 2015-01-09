@@ -12,5 +12,5 @@ class PagesController < ApplicationController
       @progress = progress(current_user)
     end
   end
-  
+
 end
