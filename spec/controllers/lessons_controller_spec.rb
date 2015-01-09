@@ -2,17 +2,31 @@ require 'spec_helper'
 
 RSpec.describe LessonsController, :type => :controller do
 
-  describe 'POST Mark' do
+  describe 'Get Lesson' do
 
-    before do
-      @lesson = FactoryGirl.create(:lesson)
+    context 'when logged in as user' do
+      it 'redirects to a lesson' do
+        login_user(FactoryGirl.build(:user))
+        get :index
+        expect(response.status).to eq(302)
+      end
+
     end
 
-    it 'should redirect to result and return send mark' do
-      post :mark, id: @lesson.id
-      expect(response).to redirect_to result_lesson_path(@lesson, :correct => 0, :questions => 0)
+    context 'when logged out' do
+      it 'redirects to welcome' do
+        get :index
+        expect(response).to redirect_to(welcome_url)
+      end
     end
 
+    context 'when logged in as admin' do
+      it 'gives success' do
+        login_user(FactoryGirl.build(:admin))
+        get :index
+        expect(response.status).to eq(200)
+      end
+    end
 
   end
 
@@ -20,7 +34,5 @@ RSpec.describe LessonsController, :type => :controller do
     before do
       @lesson = FactoryGirl.create(:lesson)
     end
-
-
   end
 end

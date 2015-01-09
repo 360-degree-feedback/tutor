@@ -1,5 +1,5 @@
-<h1>UserMailer#activation_needed_email</h1>
+<h1>Welcome to Tutor, <%= @user.name %></h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/user_mailer/activation_needed_email.html.erb
-</p>
+<p>You have successfully signed up to Tutor!
+  Your username is: <%= @user.email %>.</p>
+<p>To login to the site, just follow this link: <a href="<%= @url %>">Activate Account</a></p>

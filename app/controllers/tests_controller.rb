@@ -2,12 +2,8 @@ class TestsController < ApplicationController
 
   add_breadcrumb 'Home', :root_path
 
-  def index
-
-  end
-
+  # Shows all answers to questions and mark obtained.
   def show
-    # Shows all answers to questions and mark obtained.
     @test = Test.find(params[:id])
     @lesson = Lesson.find(@test.lesson_id)
 
@@ -20,6 +16,7 @@ class TestsController < ApplicationController
     @questions = @lesson.questions
   end
 
+  # Displays a particular user's test history.
   def display
     # If the user is not an admin AND isn't viewing their own test, redirect.
     if !current_user.admin && params[:user_id] != current_user.id.to_s
@@ -27,16 +24,17 @@ class TestsController < ApplicationController
     end
 
     add_breadcrumb 'Tests', display_tests_path(:user_id => params[:user_id])
-    # Shows all tests taken by a particular user.
+
+    @user = User.find(params[:user_id])
     @tests = Test.where(user_id: params[:user_id])
   end
 
+  # Adds a test history to the db from a test that has just been taken.
   def add
-
     @lesson = Lesson.find(params[:lesson_id])
     @questions = @lesson.questions
+
     correct = 0
-    correct_flag = false
 
     # Create Test
     @test = Test.create do |test|
@@ -66,8 +64,8 @@ class TestsController < ApplicationController
     else
       Test.update(@test.id, :passed => false)
     end
-    redirect_to @test
 
+    redirect_to @test
   end
 
 end

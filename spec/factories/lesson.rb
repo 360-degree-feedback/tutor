@@ -3,6 +3,4 @@ FactoryGirl.define do
     title 'Test'
     description 'Testing'
   end
-
-
 end

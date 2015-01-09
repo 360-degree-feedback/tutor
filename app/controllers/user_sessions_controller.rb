@@ -2,7 +2,11 @@ class UserSessionsController < ApplicationController
 
   skip_before_filter :require_login
 
+  add_breadcrumb 'Home', :root_path
+
   def new
+    add_breadcrumb 'Login', login_path
+
     @user = User.new
   end
 

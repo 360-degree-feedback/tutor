@@ -2,76 +2,51 @@ class UsersController < ApplicationController
 
   skip_before_filter :require_login, :only => [:create, :activate]
   before_filter :authorised, except: [:activate]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   add_breadcrumb 'Home', :root_path
 
-  # GET /users
-  # GET /users.json
   def index
     add_breadcrumb 'Users', users_path
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/new
   def new
     add_breadcrumb 'Users', users_path
     add_breadcrumb 'New', new_user_path
+
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit
     add_breadcrumb 'Users', users_path
     add_breadcrumb 'Edit', edit_user_path(@user)
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
       if @user.save
-        format.html {
           redirect_to users_path
           flash[:success] = 'User was successfully created.'
-        }
-        format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash[:danger] = 'Error: User was not created'
+        redirect_to new_user_path
       end
-    end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+       redirect_to @user, notice: 'User was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash[:danger] = 'Error: User was not updated'
+        redirect_to edit_user_path(@user)
       end
-    end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
   def activate
@@ -85,14 +60,15 @@ class UsersController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
-  end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :surname, :admin, :activation_state, :activation_token, :activation_token_expires_at)
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :surname, :admin, :activation_state, :activation_token, :activation_token_expires_at)
+    end
 
 end

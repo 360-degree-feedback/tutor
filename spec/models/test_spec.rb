@@ -1,5 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe Test, :type => :model do
+describe Test, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

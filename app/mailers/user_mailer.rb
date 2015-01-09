@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
   #
   def activation_success_email(user)
     @user = user
-    @url  = "http://0.0.0.0:3000/login"
+    @url  = "http://0.0.0.0:3000"
     mail(:to => user.email,
          :subject => "Your account has been activated")
   end

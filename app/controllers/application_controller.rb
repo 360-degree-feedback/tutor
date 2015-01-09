@@ -7,16 +7,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def require_login
-    unless current_user
-      redirect_to welcome_path
+    def require_login
+      unless current_user
+        redirect_to welcome_path
+      end
     end
-  end
 
-  def authorised
-    unless current_user.admin
-      redirect_to welcome_path
+    def authorised
+      unless current_user.admin
+        redirect_to welcome_path
+      end
     end
-  end
 
 end

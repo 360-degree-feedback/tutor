@@ -1,7 +1,20 @@
 FactoryGirl.define do
   factory :user do
-    id 1
-    email 'john@smith.com'
-    password 'testing'
+    email 'harry@potter.com'
+    name 'Harry'
+    surname 'Potter'
+    salt 'asdasdastr4325234324sdfds'
+    crypted_password 'secret'
+    activation_state 'active'
+  end
+
+  factory :admin, class: User do
+    email 'admin@admin.com'
+    name 'admin'
+    surname 'admin'
+    admin true
+    salt 'asdasdastr4325234324sdfds'
+    crypted_password 'secret'
+    activation_state 'active'
   end
 end

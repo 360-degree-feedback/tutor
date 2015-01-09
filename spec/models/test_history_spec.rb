@@ -1,5 +1,6 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe TestHistory, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe TestHistory, :type => :model do
+
+  it 'must '
 end
