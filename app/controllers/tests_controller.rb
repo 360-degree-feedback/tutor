@@ -1,5 +1,7 @@
 class TestsController < ApplicationController
 
+  include ApplicationHelper
+
   add_breadcrumb 'Home', :root_path
 
   # Shows all answers to questions and mark obtained.
@@ -25,6 +27,7 @@ class TestsController < ApplicationController
 
     add_breadcrumb 'Tests', display_tests_path(:user_id => params[:user_id])
 
+    @progress = progress(current_user)
     @user = User.find(params[:user_id])
     @tests = Test.where(user_id: params[:user_id])
   end
