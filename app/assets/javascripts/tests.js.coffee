@@ -4,6 +4,7 @@
 
 jQuery ->
   $('#tests').DataTable(
+    "bInfo": false
     "order": []
     "lengthChange": false
     "oLanguage" : {"sSearch": "<span class='glyphicon glyphicon-search'></span> Search "}

@@ -12,6 +12,7 @@ $(document).on "click", ".slide", ->
 
 jQuery ->
   $('#lessons').DataTable(
+    "bInfo": false
     "order": []
     "lengthChange": false
     "oLanguage" : {"sSearch": "<span class='glyphicon glyphicon-search'></span> Search "}
