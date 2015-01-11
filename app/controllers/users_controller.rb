@@ -41,10 +41,11 @@ class UsersController < ApplicationController
 
   def update
       if @user.update(user_params)
-       redirect_to @user, notice: 'User was successfully updated.'
+        flash[:success] = 'User was successfully updated'
+       redirect_to @user
       else
         flash[:danger] = 'Error: User was not updated'
-        redirect_to edit_user_path(@user)
+        render 'edit'
       end
   end
 

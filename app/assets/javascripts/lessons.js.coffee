@@ -10,7 +10,16 @@ $(document).on "click", ".slide", ->
   $('.page').attr('class', 'page')
   $(this).parent().attr('class', 'page active')
 
-
+jQuery ->
+  $('#lessons').DataTable(
+    "order": []
+    "lengthChange": false
+    "oLanguage" : {"sSearch": "<span class='glyphicon glyphicon-search'></span> Search "}
+    "columnDefs": [
+      {'sortable': false, 'targets':[3,4,5]},
+      {'searchable': false, 'targets':[3,4,5]}
+    ]
+  )
 
 
 
