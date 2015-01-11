@@ -27,9 +27,12 @@ class TestsController < ApplicationController
 
     add_breadcrumb 'Tests', display_tests_path(:user_id => params[:user_id])
 
-    @progress = progress(current_user)
-    @user = User.find(params[:user_id])
-    @tests = Test.where(user_id: params[:user_id])
+    unless params[:user_id]
+      @tests = Test.all
+    else
+      @user = User.find(params[:user_id])
+      @tests = Test.where(user_id: params[:user_id])
+    end
   end
 
   # Adds a test history to the db from a test that has just been taken.
