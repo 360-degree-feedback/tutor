@@ -11,22 +11,24 @@
 </div>
 <% if !current_user %>
     <div class="col-md-3">
-      <h1>Login</h1></br>
+      <h1>Login</h1>
+      <div class="padded"></div>
       <%= render 'user_sessions/form' %>
     </div>
 <% elsif !current_user.admin %>
     <div class="col-md-3">
-      <h1>Hello <%= current_user.name %></h1></br>
+      <h1>Hello <%= current_user.name %></h1>
+      <div class="padded"></div>
       <a href="<%= current_lessons_path %>">
         <button class="btn blue btn-lg"><span class="glyphicon glyphicon-book"></span> Continue</button>
       </a>
-      </br></br>
+      <div class="padded"></div>
       <a href="<%= display_tests_path(:user_id => current_user.id) %>">
         <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-th-list"></span> History</button>
       </a>
     </div>
     <div class="col-md-9 jumbotron">
-      <h2>Progress</h2></br>
+      <h2>Progress</h2>
       <div class="progress">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>%">
           <span class="sr-only"><%= @progress %>% Complete (success)</span>
@@ -35,11 +37,12 @@
     </div>
 <% else %>
     <div class="col-md-3">
-      <h1>Hello <%= current_user.name %></h1></br>
+      <h1>Hello <%= current_user.name %></h1>
+      <div class="padded"></div>
       <a href="<%= users_path %>">
         <button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-user"></span> Manage Users</button>
       </a>
-      </br></br>
+      <div class="padded"></div>
       <a href="<%= lessons_path %>">
         <button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-book"></span> Manage Lessons</button>
       </a>

@@ -4,10 +4,8 @@
     <div class="row questionaire">
 
       <div class="col-md-7" id="questions">
-
-
         <% if @questions.first %>
-            <h1>Questions</h1></br>
+            <h1 class="padded">Questions</h1>
             <% @questions.each do |question| %>
                 <p><strong><%= question.title %></strong></p>
 
@@ -19,13 +17,12 @@
                   <% end %>
                 </div>
 
-
             <% end %>
         <% else %>
             <div class="text-center">
-              </br></br></br></br></br>
+              <div class="white-space"></div>
               <h2>To add questions, click "Edit".</h2>
-              </br></br></br></br></br>
+              <div class="white-space"></div>
             </div>
         <% end %>
         <%= hidden_field_tag 'lesson_id', @lesson.id %>
@@ -33,11 +30,8 @@
       </div>
     </div>
     <div class="col-md-11 col-md-offset-1">
-      </br>
-      <%= submit_tag "Submit", :class => 'btn btn-success pull-right' if @questions.first %>
+      <%= submit_tag "Submit", :class => 'btn btn-success pull-right small-margin' if @questions.first %>
     </div>
-
-
 <% end %>
 
 

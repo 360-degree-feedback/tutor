@@ -13,42 +13,25 @@
         <% end %>
     <% else %>
         <div class="box text-center">
-          </br></br></br></br></br></br>
+          <div class="white-space"></div>
           <h1>To Add slides, click "Edit".</h1>
         </div>
     <% end %>
   </div>
   <div class="col-md-8 col-md-offset-4">
-
-
     <nav>
       <ul class="pagination">
-        <!--
-        <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        -->
         <% count = 1 %>
         <% @slides.each do |slide| %>
             <li class="page <%= 'active' if count == 1 %>">
               <a class="slide" href="#" content="<%= slide.id %>"><%= count %></a></li>
         <% count = count + 1
            end %>
-        <!--
-        <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-        -->
       </ul>
     </nav>
     <a href="/lessons/<%= @lesson.id %>/test">
       <button type="button" class="btn btn-success pull-right">Next</button>
     </a>
-
     <p><%= @lesson.description %></p>
   </div>
 </div>

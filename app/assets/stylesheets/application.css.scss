@@ -85,9 +85,25 @@ h1 {
   margin-bottom: 0px;
 }
 
+.padded {
+  margin-bottom: 20px;
+}
+
+.padded-top {
+  margin-top: 10px;
+}
+
 .indent {
   margin-left: 50px;
   margin-bottom: 15px;
+}
+
+.white-space {
+  height:100px;
+}
+
+.small-margin {
+  margin-top: 10px;
 }
 
 .red {
@@ -155,4 +171,8 @@ h1 {
 
 .no-padding {
   margin-top: 0px;
+}
+
+.well {
+  border: none;
 }

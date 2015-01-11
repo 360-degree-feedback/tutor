@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   skip_before_filter :require_login, :only => [:create, :activate]
   before_filter :authorised, except: [:activate]
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
 
   add_breadcrumb 'Home', :root_path
 
@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     add_breadcrumb 'New', new_user_path
 
     @user = User.new
+  end
+
+  def show
+    redirect_to edit_user_path(@user)
   end
 
   def edit

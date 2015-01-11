@@ -79,8 +79,8 @@ class LessonsController < ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      flash.now[:success] = 'Lesson was successfully updated.'
-      render 'edit'
+      flash[:success] = 'Lesson was successfully updated.'
+      redirect_to edit_lesson_path(@lesson)
     else
       flash.now[:danger] = 'Error: Lesson could not be updated.'
       render 'edit'
