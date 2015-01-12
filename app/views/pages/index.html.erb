@@ -47,5 +47,39 @@
         <button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-book"></span> Manage Lessons</button>
       </a>
     </div>
+    <div class="col-md-9">
+      <h1>Recent Activity</h1>
+      <table id="index-tests" class="table well">
+        <thead>
+        <tr>
+          <th>Lesson</th>
+          <th>Mark</th>
+          <th>Out of</th>
+          <th>Passed</th>
+          <th>User</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th colspan="1"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @tests.each do |test| %>
+            <tr>
+              <td><%= Lesson.find(test.lesson_id).title %></td>
+              <td><%= test.mark %></td>
+              <td><%= test.total %></td>
+              <td><%= test.passed %></td>
+              <td><%= user = User.find(test.user_id)
+                      "#{user.name} #{user.surname}" %>
+              </td>
+              <td><%= test.created_at.to_date %></td>
+              <td><%= test.created_at.to_s(:time)%></td>
+              <td><%= link_to 'View', test_path(test) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
 <% end %>
 

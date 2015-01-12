@@ -17,8 +17,8 @@
       <tr>
         <td><%= lesson.title %></td>
         <td><%= truncate lesson.description, :length => 60, :separator => /\W/ %></td>
-        <td><%= if lesson.created_by
-                  User.find(lesson.created_by).email if User.find(lesson.created_by)
+        <td><%= if lesson.created_by && User.find(lesson.created_by)
+                  User.find(lesson.created_by).email
                 else
                   '(none)'
                 end %>
