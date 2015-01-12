@@ -31,9 +31,34 @@ RSpec.describe LessonsController, :type => :controller do
   end
 
   describe 'Get show' do
+
+
+
     context 'when logged in' do
+
+      before(:each) do
+        controller.stub(:can_see)
+      end
+
       it 'gives success' do
-        get :show
+        login_user(FactoryGirl.build(:user))
+        lesson = FactoryGirl.create(:lesson)
+
+        get :show, id: lesson
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'when logged out' do
+      before(:each) do
+        controller.stub(:can_see)
+      end
+
+      it 'does not give success' do
+        lesson = FactoryGirl.create(:lesson)
+
+        get :show, id: lesson
+        expect(response.status).to_not eq(200)
       end
     end
   end
@@ -66,6 +91,8 @@ RSpec.describe LessonsController, :type => :controller do
       end
     end
   end
+
+
 
 
 end

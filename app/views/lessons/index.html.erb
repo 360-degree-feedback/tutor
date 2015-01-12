@@ -3,26 +3,31 @@
 </br>
 <table id="lessons" class="table">
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Created by</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Created by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
   <tbody>
-    <% @lessons.each do |lesson| %>
+  <% @lessons.each do |lesson| %>
       <tr>
         <td><%= lesson.title %></td>
         <td><%= truncate lesson.description, :length => 60, :separator => /\W/ %></td>
-        <td><%= User.find(lesson.created_by).email if User.find(lesson.created_by)%></td>
+        <td><%= if lesson.created_by
+                  User.find(lesson.created_by).email if User.find(lesson.created_by)
+                else
+                  '(none)'
+                end %>
+        </td>
         <td><%= link_to 'View', lesson %></td>
         <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-        <td><%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', lesson, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
