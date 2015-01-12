@@ -62,6 +62,9 @@ gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 # Letter Opener
 gem 'letter_opener', :group => :development
 
+# Postgres
+gem 'pg'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

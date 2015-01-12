@@ -15,7 +15,11 @@ module ApplicationHelper
     tests = Test.where('user_id = ? AND passed = ?', user.id, true)
     count = tests.count(:lesson_id, distinct: true)
     total = Lesson.all.count
-    return ((count.to_f/total.to_f).round(1)*100).to_i
+    if total > 0
+      return ((count.to_f/total.to_f).round(1)*100).to_i
+    else
+      return 0
+    end
   end
 
   def progress_id(user)

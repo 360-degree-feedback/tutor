@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe LessonsController, :type => :controller do
 
-  describe 'Get Lesson' do
+  describe 'Get index' do
 
     context 'when logged in as user' do
       it 'redirects to a lesson' do
@@ -30,9 +30,42 @@ RSpec.describe LessonsController, :type => :controller do
 
   end
 
-  describe 'Get Test' do
-    before do
-      @lesson = FactoryGirl.create(:lesson)
+  describe 'Get show' do
+    context 'when logged in' do
+      it 'gives success' do
+        get :show
+      end
     end
   end
+
+
+  describe 'Post create' do
+    context 'when logged in as user' do
+      it 'create is not allowed' do
+        login_user(FactoryGirl.build(:user))
+        expect {
+          post :create, lesson: FactoryGirl.attributes_for(:lesson)
+        }.to_not change(Lesson, :count)
+      end
+    end
+
+    context 'when logged out' do
+      it 'does not allow for lesson creation' do
+        expect {
+          post :create, lesson: FactoryGirl.attributes_for(:lesson)
+        }.to_not change(Lesson, :count)
+      end
+    end
+
+    context 'when logged in as admin' do
+      it 'create is successful' do
+        login_user(FactoryGirl.build(:admin))
+        expect {
+          post :create, lesson: FactoryGirl.attributes_for(:lesson)
+        }.to change(Lesson, :count).by(1)
+      end
+    end
+  end
+
+
 end

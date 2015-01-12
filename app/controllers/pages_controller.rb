@@ -13,4 +13,12 @@ class PagesController < ApplicationController
     end
   end
 
+  def error
+    add_breadcrumb 'Error', error_path
+  end
+
+  def congratulations
+    add_breadcrumb 'Congratulations', congratulations_path
+  end
+
 end

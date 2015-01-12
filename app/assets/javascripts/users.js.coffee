@@ -7,7 +7,10 @@ jQuery ->
     "bInfo": false
     "order": []
     "lengthChange": false
-    "oLanguage" : {"sSearch": "<span class='glyphicon glyphicon-search'></span> Search "}
+    "oLanguage" : {
+      "sSearch": "<span class='glyphicon glyphicon-search'></span> Search ",
+      "sEmptyTable": "No Users have been added."
+    }
     "columnDefs": [
       {'sortable': false, 'targets':[4,5]},
       {'searchable': false, 'targets':[4,5]}

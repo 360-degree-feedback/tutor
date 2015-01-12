@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'welcome' => 'pages#index'
   get 'congratulations' => 'pages#congratulations'
+  get 'error' => 'pages#error'
 
   root 'pages#index'
 

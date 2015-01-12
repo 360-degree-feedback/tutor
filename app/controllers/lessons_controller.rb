@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy, :test]
   before_filter :can_see, only: [:show, :test]
-  before_filter :authorised, only: [:index, :edit, :update, :new, :destroy]
+  before_filter :authorised, only: [:index, :edit, :update, :create, :new, :destroy]
 
   include ApplicationHelper
 
@@ -41,7 +41,12 @@ class LessonsController < ApplicationController
     latest = tests.maximum('lesson_id')
     next_lesson = Lesson.where('id > ?', latest).first || Lesson.first
 
-    redirect_to lesson_path(next_lesson)
+    if next_lesson
+      redirect_to lesson_path(next_lesson)
+    else
+      flash[:danger] = 'Error: No Lessons exist.'
+      redirect_to error_path
+    end
   end
 
   def edit
@@ -96,21 +101,21 @@ class LessonsController < ApplicationController
 
   private
 
-    # Checks whether the user is allowed to view the lesson (have progressed far enough).
-    def can_see
-      if !current_user.admin && progress_id(current_user) < @lesson.id
-        redirect_to current_lessons_path
-      end
+  # Checks whether the user is allowed to view the lesson (have progressed far enough).
+  def can_see
+    if !current_user.admin && progress_id(current_user) < @lesson.id
+      redirect_to current_lessons_path
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lesson
-      @user = current_user
-      @lesson = Lesson.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lesson
+    @user = current_user
+    @lesson = Lesson.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lesson_params
-      params.require(:lesson).permit(:title, :description, :created_by, :slides_attributes => [:id, :title, :markdown, :lesson_id, :_destroy], :questions_attributes => [:id, :title, :lesson_id, :_destroy, :answers_attributes => [:id, :title, :correct, :question_id, :_destroy]])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lesson_params
+    params.require(:lesson).permit(:title, :description, :created_by, :slides_attributes => [:id, :title, :markdown, :lesson_id, :_destroy], :questions_attributes => [:id, :title, :lesson_id, :_destroy, :answers_attributes => [:id, :title, :correct, :question_id, :_destroy]])
+  end
 end
