@@ -5,8 +5,9 @@ class QuestionsController < ApplicationController
   add_breadcrumb 'Home', :root_path
 
   def modify
-    add_breadcrumb 'Edit', edit_lesson_path(@lesson)
-    add_breadcrumb 'Questions', modify_lesson_questions_path(@lesson)
+    add_breadcrumb 'Lessons', lessons_path
+    add_breadcrumb @lesson.title, lesson_path(@lesson)
+    add_breadcrumb 'Edit Questions', modify_lesson_questions_path(@lesson)
   end
 
   private

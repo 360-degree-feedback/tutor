@@ -50,8 +50,9 @@ class LessonsController < ApplicationController
   end
 
   def edit
+    add_breadcrumb 'Lessons', lessons_path
     add_breadcrumb @lesson.title, lesson_path(@lesson)
-    add_breadcrumb 'Edit', edit_lesson_path(@lesson)
+    add_breadcrumb 'Edit Info', edit_lesson_path(@lesson)
 
     @user = current_user
   end
