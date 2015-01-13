@@ -10,11 +10,12 @@ class PagesController < ApplicationController
     if logged_in?
       @user = current_user
       @progress = progress(current_user)
+
+      if current_user.admin
+        @tests = Test.last(5).reverse
+      end
     end
 
-    if current_user.admin
-      @tests = Test.last(5).reverse
-    end
   end
 
   def error

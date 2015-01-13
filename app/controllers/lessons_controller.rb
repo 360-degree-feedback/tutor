@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
     add_breadcrumb @lesson.title, lesson_path(@lesson)
 
     @lessons = Lesson.all
-    @slides = @lesson.slides
+    @slides = @lesson.slides.order(id: :asc)
     @first_slide = @slides.first
     @user = current_user
   end
