@@ -28,10 +28,10 @@ class TestsController < ApplicationController
     add_breadcrumb 'Tests', display_tests_path(:user_id => params[:user_id])
 
     unless params[:user_id]
-      @tests = Test.all
+      @tests = Test.all.order(id: :asc)
     else
       @user = User.find(params[:user_id])
-      @tests = Test.where(user_id: params[:user_id])
+      @tests = Test.where(user_id: params[:user_id]).order(id: :asc)
     end
   end
 
